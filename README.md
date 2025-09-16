@@ -65,10 +65,7 @@ A full-stack web application that allows citizens to report community issues and
    
    Create a `.env` file in the `server` directory:
    ```env
-   PORT=5000
-   MONGODB_URI=mongodb+srv://jessiemounika367:jessie123@cluster0.ufpruga.mongodb.net/citizen-reporting
-   JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
-   NODE_ENV=development
+   
    ```
 
 5. **Seed the database with sample data**
