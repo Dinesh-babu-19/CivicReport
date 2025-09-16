@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Ensure popovers/menus render above Leaflet map tiles */
+.leaflet-container {
+  z-index: 0;
+}
+.select-content-portal,
+.radix-themes,
+.radix-ui,
+.sonner-toaster,
+.shadcn-portal,
+.fixed, .absolute, .dropdown-content,
+[role="listbox"], .DialogContent, .PopoverContent, .SelectContent {
+  z-index: 50;
+}
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Eco palette derived from user-provided hex */
+    /* Primary Greens */
+    --forest-green: 142 44% 34%; /* #2E7D32 */
+    --leaf-green: 140 39% 56%;  /* #66BB6A */
+    --fresh-lime: 90 45% 73%;   /* #AED581 */
+
+    /* Secondary Blues/Teal */
+    --sky-blue: 196 86% 64%;    /* #4FC3F7 */
+    --aqua-blue: 199 98% 41%;   /* #0288D1 */
+    --teal: 174 100% 24%;       /* #00796B */
+
+    /* Neutrals */
+    --pure-white: 0 0% 100%;    /* #FFFFFF */
+    --soft-gray: 0 0% 96%;      /* #F5F5F5 */
+    --charcoal: 0 0% 26%;       /* #424242 */
+
+    /* Earth accents */
+    --sand-beige: 16 16% 82%;   /* #D7CCC8 */
+    --warm-brown: 17 20% 34%;   /* #6D4C41 */
+
+    /* Semantic tokens mapped to palette */
+    --background: var(--soft-gray);
+    --foreground: var(--charcoal);
+
+    --primary-brand: var(--forest-green);
+    --secondary-brand: var(--leaf-green);
+    --accent-tech: var(--sky-blue);
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--forest-green)) 0%, hsl(var(--leaf-green)) 50%, hsl(var(--teal)) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(var(--pure-white)) 0%, hsl(var(--soft-gray)) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--soft-gray)) 0%, hsl(var(--pure-white)) 100%);
+
+    /* Shadows tuned to greens */
+    --shadow-glow: 0 10px 40px hsl(var(--leaf-green) / 0.25);
+    --shadow-card: 0 8px 32px hsl(150 10% 40% / 0.15);
+    --shadow-hover: 0 20px 60px hsl(var(--teal) / 0.25);
+
+    /* Animations */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    /* Tailwind-bound tokens */
+    --card: var(--pure-white);
+    --card-foreground: var(--charcoal);
+
+    --popover: var(--pure-white);
+    --popover-foreground: var(--charcoal);
+
+    --primary: var(--forest-green);
+    --primary-foreground: var(--pure-white);
+
+    --secondary: var(--leaf-green);
+    --secondary-foreground: var(--pure-white);
+
+    --muted: 0 0% 92%;
+    --muted-foreground: 0 0% 38%;
+
+    --accent: var(--sky-blue);
+    --accent-foreground: var(--charcoal);
+
+    --destructive: 0 63% 47%;
+    --destructive-foreground: var(--pure-white);
+
+    --border: 0 0% 88%;
+    --input: 0 0% 88%;
+    --ring: var(--leaf-green);
+
+    --radius: 0.75rem;
+  }
+}
+
+@layer components {
+  .text-gradient {
+    background: var(--gradient-hero);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .card-glow {
+    box-shadow: var(--shadow-card);
+    transition: var(--transition-smooth);
+  }
+  
+  .card-glow:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-8px);
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 20px hsl(var(--leaf-green) / 0.4); }
+  to { box-shadow: 0 0 30px hsl(var(--leaf-green) / 0.8), 0 0 40px hsl(var(--teal) / 0.3); }
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+.typewriter {
+  overflow: hidden;
+  border-right: 3px solid hsl(var(--forest-green));
+  white-space: nowrap;
+  animation: typewriter 3s steps(40, end), blink 0.75s step-end infinite;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground overflow-x-hidden;
+    background: var(--gradient-subtle);
+  }
+}
